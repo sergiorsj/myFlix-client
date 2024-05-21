@@ -5,19 +5,25 @@ import { MovieView } from "../movie-view/movie-view";
 export const MainView = () => {
     const [movies, setMovies] = useState([
       {
-        title: 'Shutter Island',
-        director: 'Martin Scorsese',
-        genre:'Suspense-Thriller'
+        id: 1,
+        Title: 'Shutter Island',
+        Director: 'Martin Scorsese',
+        Genre:'Suspense-Thriller',
+        ImageUrl: 'https://upload.wikimedia.org/wikipedia/en/7/76/Shutterislandposter.jpg'
       },
       {
-        title: 'The Fugitive',
-        director: 'Andrew Davis',
-        genre: 'Suspense-Thriller'
+        id: 2,
+        Title: 'The Fugitive',
+        Director: 'Andrew Davis',
+        Genre: 'Suspense-Thriller',
+        ImageUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/0/04/The_Fugitive_official_logo.png/250px-The_Fugitive_official_logo.png'
       },
       {
-        title: 'The Shack',
-        director: 'Stuart Hazeldine',
-        genre: 'Feel-Good'
+        id: 3,
+        Title: 'The Shack',
+        Director: 'Stuart Hazeldine',
+        Genre: 'Feel-Good',
+        ImageUrl: 'https://upload.wikimedia.org/wikipedia/en/f/fd/Shackover.jpg'
       },
   ]);
 
