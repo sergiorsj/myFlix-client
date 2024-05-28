@@ -27380,43 +27380,32 @@ var _movieView = require("../movie-view/movie-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
-    const [movies, setMovies] = (0, _react.useState)([
-        {
-            id: 1,
-            Title: "Shutter Island",
-            Director: "Martin Scorsese",
-            Genre: "Suspense-Thriller",
-            ImageUrl: "https://upload.wikimedia.org/wikipedia/en/7/76/Shutterislandposter.jpg"
-        },
-        {
-            id: 2,
-            Title: "The Fugitive",
-            Director: "Andrew Davis",
-            Genre: "Suspense-Thriller",
-            ImageUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/0/04/The_Fugitive_official_logo.png/250px-The_Fugitive_official_logo.png"
-        },
-        {
-            id: 3,
-            Title: "The Shack",
-            Director: "Stuart Hazeldine",
-            Genre: "Feel-Good",
-            ImageUrl: "https://upload.wikimedia.org/wikipedia/en/f/fd/Shackover.jpg"
-        }
-    ]);
+    const [movies, setMovies] = (0, _react.useState)([]);
+    (0, _react.useEffect)(()=>{
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjU1MjQ1OWM4ZjA4YTEzNGMyOWM4ZWMiLCJVc2VybmFtZSI6ImpvaG5kb2UxMTExMiIsIlBhc3N3b3JkIjoicGFzc3cwcmQiLCJFbWFpbCI6ImpvaG5kb2UxMjEyQGVtYWlsLmNvbSIsIkZhdm9yaXRlTW92aWVzIjpbXSwiX192IjowLCJpYXQiOjE3MTY4NTU5MTMsImV4cCI6MTcxNzQ2MDcxMywic3ViIjoiam9obmRvZTExMTEyIn0.KRO5lFanhnPjs7E2h55S0bV_RTseuJq313rJPkWfMHw";
+        fetch("https://sheltered-brook-80862-fdde9bb54fcc.herokuapp.com/movies", {
+            headers: {
+                Authorizantion: "Bearer " + token
+            }
+        }).then((response)=>response.json()).then((movies)=>{
+            console.log(movies);
+            setMovies(movies);
+        }).catch((e)=>console.log(e));
+    });
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
         movie: selectedMovie,
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "components/main-view/main-view.jsx",
-        lineNumber: 34,
+        lineNumber: 47,
         columnNumber: 7
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "components/main-view/main-view.jsx",
-        lineNumber: 41,
+        lineNumber: 54,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27427,16 +27416,16 @@ const MainView = ()=>{
                 }
             }, movie.id, false, {
                 fileName: "components/main-view/main-view.jsx",
-                lineNumber: 47,
+                lineNumber: 60,
                 columnNumber: 9
             }, undefined))
     }, void 0, false, {
         fileName: "components/main-view/main-view.jsx",
-        lineNumber: 45,
+        lineNumber: 58,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "foYhXZJnrTKvVr6okc//A87mhWc=");
+_s(MainView, "QKndh2QIspIvKdo7mHRzuhJBNOI=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -27523,7 +27512,7 @@ const MovieView = ({ movie, onBackClick })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                src: movie.ImageUrl
+                src: movie.ImagePath
             }, void 0, false, {
                 fileName: "components/movie-view/movie-view.jsx",
                 lineNumber: 4,
@@ -27561,7 +27550,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: movie.Director
+                        children: movie.Director.Name
                     }, void 0, false, {
                         fileName: "components/movie-view/movie-view.jsx",
                         lineNumber: 11,
@@ -27583,7 +27572,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: movie.Genre
+                        children: movie.Genre.Name
                     }, void 0, false, {
                         fileName: "components/movie-view/movie-view.jsx",
                         lineNumber: 15,
