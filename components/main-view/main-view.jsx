@@ -35,7 +35,7 @@ export const MainView = () => {
       }
     })
     .then(response=>response.json())
-    .then(movies=>{console.log(movies)
+    .then(movies=>{
       setMovies(movies)})
     .catch(e=>console.log(e))
   } )
@@ -58,7 +58,7 @@ export const MainView = () => {
     <div>
       {movies.map((movie) => (
         <MovieCard
-          key={movie.id}
+          key={movie._id}
           movie={movie}
           onMovieClick={() => {
             setSelectedMovie(movie);
