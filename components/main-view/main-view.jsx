@@ -28,12 +28,8 @@ export const MainView = () => {
   ]);
 
   useEffect(() => {
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjU1MjQ1OWM4ZjA4YTEzNGMyOWM4ZWMiLCJVc2VybmFtZSI6ImpvaG5kb2UxMTExMiIsIlBhc3N3b3JkIjoicGFzc3cwcmQiLCJFbWFpbCI6ImpvaG5kb2UxMjEyQGVtYWlsLmNvbSIsIkZhdm9yaXRlTW92aWVzIjpbXSwiX192IjowLCJpYXQiOjE3MTY4NTU5MTMsImV4cCI6MTcxNzQ2MDcxMywic3ViIjoiam9obmRvZTExMTEyIn0.KRO5lFanhnPjs7E2h55S0bV_RTseuJq313rJPkWfMHw";
-    fetch("https://sheltered-brook-80862-fdde9bb54fcc.herokuapp.com/movies", {
-      headers:{
-        Authorizantion:"Bearer " + token
-      }
-    })
+    fetch("https://sheltered-brook-80862-fdde9bb54fcc.herokuapp.com/movies"
+    )
     .then(response=>response.json())
     .then(movies=>{
       setMovies(movies)})
