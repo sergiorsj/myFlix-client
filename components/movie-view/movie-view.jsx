@@ -1,6 +1,8 @@
+import { Container } from "react-bootstrap";
+
 export const MovieView = ({ movie, onBackClick }) => {
     return (
-      <div>
+      <Container>
         <img src={movie.ImagePath} />
         <div>
           <span>Title: </span>
@@ -15,6 +17,6 @@ export const MovieView = ({ movie, onBackClick }) => {
           <span>{movie.Genre.Name}</span>
         </div>
         <button onClick={onBackClick}>Back</button>
-      </div>
+      </Container>
     );
   };

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
+import Row from "react-bootstrap/Row";
 
 export const MainView = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
@@ -52,7 +53,7 @@ export const MainView = () => {
   }
 
   return (
-    <div>
+    <Row>
       <button
         onClick={() => {
           setUser(null);
@@ -61,14 +62,14 @@ export const MainView = () => {
         Logout
       </button>
       {movies.map((movie) => (
-        <MovieCard
+        <Col><MovieCard
           key={movie._id}
           movie={movie}
           onMovieClick={() => {
             setSelectedMovie(movie);
           }}
-        />
+        /></Col>
       ))}
-    </div>
+    </Row>
   );
 };

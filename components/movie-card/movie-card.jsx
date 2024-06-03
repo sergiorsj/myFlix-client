@@ -1,13 +1,13 @@
 import PropType from "prop-types";
+import { Card, Col } from "react-bootstrap";
 export const MovieCard = ({ movie, onMovieClick }) => {
     return (
-      <div
+      <Card>
         onClick={() => {
           onMovieClick(movie);
         }}
-      >
         {movie.Title}
-      </div>
+      </Card>
     );
   };
 
