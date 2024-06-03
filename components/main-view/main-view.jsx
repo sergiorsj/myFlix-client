@@ -3,6 +3,9 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import Row from "react-bootstrap/Row";
+import { Container } from "react-bootstrap";
+import { SignUpView } from "../signup-view/signup-view";
+
 
 export const MainView = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
@@ -21,7 +24,12 @@ export const MainView = () => {
 
 
   if (!user) {
-    return <LoginView onLoggedIn={(user) => setUser(user)} />;
+    return <Container><h1>Log in</h1>
+      <LoginView onLoggedIn={(user) => setUser(user)} />
+    <br/> Or <br/>
+    <h1>Sign Up</h1>
+    <SignUpView/>
+    </Container>;
   }
 
   if (selectedMovie) {
