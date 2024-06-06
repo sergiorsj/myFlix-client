@@ -116,6 +116,23 @@ export const MainView = () => {
               </>
             }
           />
+
+<Route
+            path="/movies/:movieId"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <Col>The list is empty!</Col>
+                ) : (
+                  <Col md={8}>
+                    <MovieView movies={movies} />
+                  </Col>
+                )}
+              </>
+            }
+          />
       {/* <button
         onClick={() => {
           setUser(null);
