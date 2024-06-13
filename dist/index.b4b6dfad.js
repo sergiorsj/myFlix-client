@@ -48533,7 +48533,7 @@ const MovieView = ({ movies, onBackClick })=>{
     else return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                src: movie.ImagePath
+                src: location.href.split("/movies")[0] + "/" + movie.ImagePath
             }, void 0, false, {
                 fileName: "components/movie-view/movie-view.jsx",
                 lineNumber: 14,

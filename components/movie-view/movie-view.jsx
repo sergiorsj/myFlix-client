@@ -11,7 +11,7 @@ export const MovieView = ({ movies, onBackClick }) => {
   else
     return (
       <Container>
-        <img src={movie.ImagePath} />
+        <img src={location.href.split("/movies")[0] + "/" + movie.ImagePath} />
         <div>
           <span>Title: </span>
           <span>{movie.Title}</span>
