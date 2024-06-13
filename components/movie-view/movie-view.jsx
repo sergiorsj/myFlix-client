@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 
 export const MovieView = ({ movies, onBackClick }) => {
   const {movieId} = useParams();
-  const [movie, setMovie] = useState({})
-  useEffect(() => {
-     setMovie(movies.find(x=>x._id === movieId))
-  }, [movies, movieId, movie])
+  const [movie, setMovie] = useState(movies.find(x=>x._id === movieId))
   console.log(movieId, movie)
   if (!movie) return <>Loading...</>
   else
@@ -34,7 +32,7 @@ export const MovieView = ({ movies, onBackClick }) => {
           <span>Actors: </span>
           <span>{JSON.stringify(movie.Actors)}</span>
         </div>
-        <button onClick={onBackClick}>Back</button>
+        <Link to="/"> Back </Link>
       </Container>
     );
   };
