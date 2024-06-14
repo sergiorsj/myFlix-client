@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Container } from "react-bootstrap";
 import { SignUpView } from "../signup-view/signup-view";
+import { ProfileView } from "../profile-view/profile-view";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 
@@ -133,6 +134,17 @@ export const MainView = () => {
               </>
             }
           />
+          <Route
+            path="/profile"
+            element={
+              <>
+                  <Col md={8}>
+                    <ProfileView movies={movies} />
+                  </Col>
+              </>
+            }
+          />
+
       {/* <button
         onClick={() => {
           setUser(null);

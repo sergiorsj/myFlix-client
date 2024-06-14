@@ -2,9 +2,12 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { Form } from "react-bootstrap";
 
-export const LoginView = ({ onLoggedIn }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+export const ProfileView = ({ onLoggedIn }) => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const [username, setUsername] = useState(user.Username);
+  const [email, setEmail] = useState(user.Email);
+  // const [password, setPassword] = useState(user.Password);
+  const [birthday, setBirthday] = useState(user.Birthday);
 
   const handleSubmit = (event) => {
     // this prevents the default behavior of the form which is to reload the entire page
@@ -12,24 +15,23 @@ export const LoginView = ({ onLoggedIn }) => {
 
     const data = {
       Username: username,
-      Password: password
+      // Password: password,
+      Email: email,
+      Birthday: birthday
     };
 
-    fetch("https://sheltered-brook-80862-fdde9bb54fcc.herokuapp.com/login", {
-      method: "POST",
+    fetch("https://sheltered-brook-80862-fdde9bb54fcc.herokuapp.com/users/"+user._id, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data)
-    })
-    .then((response) => response.json())
-    .then((response) => {
+    }).then((response) => {
       console.log(response)
-      if (response.user) {
+      if (response.ok) {
         onLoggedIn(username);
-        localStorage.setItem("user", JSON.stringify(response.user)); 
       } else {
-        alert("Login failed");
+        alert("Edited failed");
       }
     });
   };
@@ -44,13 +46,29 @@ export const LoginView = ({ onLoggedIn }) => {
           onChange={(e) => setUsername(e.target.value)}
         />
       </Form.Label>
-      <Form.Label>
+      {/* <Form.Label>
         Password:
         <Form.Control
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+      </Form.Label> */}
+      <Form.Label>
+        email:
+        <Form.Control
+          type="text"
+          value={email}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+              <Form.Label>
+        birthday:
+        <Form.Control
+          type="text"
+          value={birthday}
+          onChange={(e) => setBirthday(e.target.value)}
+        />
+      </Form.Label>
       </Form.Label>
       <Button type="submit" className="primary">Submit</Button>
     </Form>
