@@ -28,6 +28,8 @@ export const LoginView = ({ onLoggedIn }) => {
       if (response.user) {
         onLoggedIn(username);
         localStorage.setItem("user", JSON.stringify(response.user)); 
+        localStorage.setItem("token", JSON.stringify(response.token)); 
+        location.href = "/";
       } else {
         alert("Login failed");
       }

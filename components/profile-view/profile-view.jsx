@@ -1,76 +1,109 @@
-import { useState } from "react";
-import Button from "react-bootstrap/Button";
-import { Form } from "react-bootstrap";
+import{ useState } from "react";
+import { Button, Card, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { MovieCard } from "../movie-card/movie-card";
 
-export const ProfileView = ({ onLoggedIn }) => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const [username, setUsername] = useState(user.Username);
-  const [email, setEmail] = useState(user.Email);
-  // const [password, setPassword] = useState(user.Password);
-  const [birthday, setBirthday] = useState(user.Birthday);
+export const ProfileView = ({movies}) => {
+  const localUser = JSON.parse(localStorage.getItem("user"));
+  const fav =  movies.filter((movie) => {
+    return localUser.FavoriteMovies.includes(movie._id);
+  });
+  
+  const [username, setUsername] = useState(localUser.Username||"");
+  const [password, setPassword] = useState(localUser.Password||"");
+  const [email, setEmail] = useState(localUser.Email||"");
+  const [birthday, setBirthday] = useState(localUser.Birthday||"01/01/0001");
 
   const handleSubmit = (event) => {
-    // this prevents the default behavior of the form which is to reload the entire page
     event.preventDefault();
 
     const data = {
       Username: username,
-      // Password: password,
+      Password: password,
       Email: email,
       Birthday: birthday
     };
 
     fetch("https://sheltered-brook-80862-fdde9bb54fcc.herokuapp.com/users/"+user._id, {
-      method: "PUT",
+      method: "POST",
+      body: JSON.stringify(data),
       headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data)
+        "Content-Type": "application/json"
+      }
     }).then((response) => {
-      console.log(response)
       if (response.ok) {
-        onLoggedIn(username);
+        alert("Signup successful");
+        window.location.reload();
       } else {
-        alert("Edited failed");
+        alert("Signup failed");
       }
     });
   };
-
+console.log(fav);
   return (
     <Form onSubmit={handleSubmit}>
+    <Form.Group controlId="formUsername">
       <Form.Label>
         Username:
-        <Form.Control
+      </Form.Label>
+      <Form.Control
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-        />
-      </Form.Label>
-      {/* <Form.Label>
+          required
+          minLength='4'
+        /> 
+    </Form.Group>
+    <Form.Group controlId="formPassword">
+      <Form.Label>
         Password:
+      </Form.Label>
         <Form.Control
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
-      </Form.Label> */}
-      <Form.Label>
-        email:
+    </Form.Group>
+    <Form.Group controlId="formEmail">
+    <Form.Label>
+        Email:
+    </Form.Label>
         <Form.Control
-          type="text"
+          type="email"
           value={email}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
+          required
         />
-              <Form.Label>
-        birthday:
+    </Form.Group>
+    <Form.Group controlId="formBdate">
+    <Form.Label>
+        Birthday:
+    </Form.Label>
         <Form.Control
-          type="text"
+          type="date"
           value={birthday}
           onChange={(e) => setBirthday(e.target.value)}
+          required
         />
-      </Form.Label>
-      </Form.Label>
-      <Button type="submit" className="primary">Submit</Button>
+    </Form.Group>
+    <h1>Fav Movies</h1>
+      <Button variant="primary" type="submit">Edit Profile</Button>
+      {
+       localUser && fav.map((movie) => (
+        <MovieCard movie={movie}>
+        </MovieCard>
+    // <Card>
+    //     <Card.Img variant="top" src={movie.ImagePath}/>
+    //     <Card.Body>
+    //     <Card.Title>{movie.Title}</Card.Title>
+    //     <Card.Text>{movie.Director.Name}</Card.Text>
+    //     <Link to = {`/movies/${movie._id}`}>
+    //       Open
+    //     </Link>
+    //     </Card.Body>
+    //   </Card>
+        ))}
     </Form>
   );
 };
