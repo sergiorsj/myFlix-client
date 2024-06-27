@@ -27253,7 +27253,11 @@ var _s = $RefreshSig$();
 const NavBar = ()=>{
     const handleLogout = ()=>{
         localStorage.clear();
+<<<<<<< HEAD
         window.location.href = "/";
+=======
+        window.location.href = "/login";
+>>>>>>> 4b2252cbf5ef29939a603de3a8e3b0341e0bc7eb
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("nav", {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {

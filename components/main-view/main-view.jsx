@@ -12,7 +12,7 @@ import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 const NavBar = () => {
   const handleLogout = () => {
     localStorage.clear();
-    window.location.href = "/";
+    window.location.href = "/login";
   };
 
   return (
